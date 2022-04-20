@@ -1,30 +1,28 @@
-hours_worked = input("Enter Hours:")
-rate = input("Enter Rate:")
+hours_worked= 0.0
+rate= 0.0
 
-
-if float(hours_worked) <= 40:
-    pay = float(hours_worked) * float(rate)
-else:
-    pay = ((float(hours_worked) - 40) * float(rate) * 1.5) + float(rate) * 40
-
-print(pay)
-
-get_me_out = input('Do you want to continue? [y/n]')
-while get_me_out == 'n':
-    print('too bad')
-    hours_worked = input("Enter Hours:")
-    rate = input("Enter Rate:")
-
+def over_calc():
+    hours_worked= float(input("Enter Hours:"))
+    rate= float(input("Enter Rate:"))
     if float(hours_worked) <= 40:
         pay = float(hours_worked) * float(rate)
+        print('Your total pay for this period is:',pay,'\nYou do not qualify for overtime pay this period.')
+
     else:
         pay = ((float(hours_worked) - 40) * float(rate) * 1.5) + float(rate) * 40
-
-    print(pay)
-    get_me_out = input('Do you want to continue? [y/n]')
-else:
-    print('too bad')
-    exit()
+        overtime = float((hours_worked) - 40) * (float(rate) * 1.5)
+        print('Your total pay for this period is: ',pay, '\nYour overtime pay is:',overtime)
 
 
+def exit_program():
+    quit = input('Do you wish to continue?: [y , n]\n')
+    if quit == 'n':
+        exit()
+    else:
+        over_calc()
+        exit_program()
+
+
+over_calc()
+exit_program()
 
